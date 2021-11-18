@@ -1,0 +1,57 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+    branches: [ master ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+env:
+  PIPENV_VENV_IN_PROJECT: 1
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-python@v2.2.2
+        with:
+          python-version: '3.9'
+
+      - name: Install
+        id: install
+        run: |
+          python -m venv ./.venv
+          source .venv/bin/activate
+          pip3 install -r requirements.txt
+
+      - name: Lint
+        if: success() || steps.install.outcome == 'success'
+        run: |
+          source .venv/bin/activate
+          flake8 cuneiform_sign_detection
+      
+      - name: Code Style
+        if: success() || steps.install.outcome == 'success'
+        run: |
+          source .venv/bin/activate
+          black cuneiform_sign_detection --check
+
+      - name: Type Check
+        if: success() || steps.install.outcome == 'success'
+        run: |
+          source .venv/bin/activate
+          pyre check
+
+      - name: Unit Tests
+        id: unit_tests
+        env:
+          CI: true
+        run: |
+          export PYTHONPATH="$PWD"
+          source .venv/bin/activate
+          pytest
