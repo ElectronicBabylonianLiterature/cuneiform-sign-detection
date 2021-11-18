@@ -1,0 +1,10 @@
+.idea
+venv/
+__pycache__
+utils/__pycache__
+.pyre
+.venv/
+cuneiform_sign_detection/INFO
+INFO
+epoch_*
+*.pth
