@@ -8,3 +8,4 @@ cuneiform_sign_detection/INFO
 INFO
 epoch_*
 *.pth
+!checkpoints
