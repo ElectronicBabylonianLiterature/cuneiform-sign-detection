@@ -1,4 +1,4 @@
 data filter=lfs diff=lfs merge=lfs -text
 temp filter=lfs diff=lfs merge=lfs -text
 logs filter=lfs diff=lfs merge=lfs -text
-checkpoint filter=lfs diff=lfs merge=lfs -text
+checkpoints filter=lfs diff=lfs merge=lfs -text
