@@ -1,0 +1,1 @@
+default fourier degree just more epochs

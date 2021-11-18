@@ -1,0 +1,1 @@
+default optimizer 1500 epochs
