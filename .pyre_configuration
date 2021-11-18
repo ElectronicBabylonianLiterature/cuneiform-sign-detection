@@ -1,0 +1,9 @@
+{
+  "source_directories": [
+    {
+      "import_root": ".",
+      "source": "cuneiform_sign_detection"
+    }
+  ],
+  "taint_models_path": "../.venv/lib"
+}
